@@ -19,8 +19,26 @@ width:600px;
 }
 
 div.label {
-	background-color:#425c9f;	
-	color: #fff;
+	background-color:#fff;	
+	color: #777;
+	border-style: solid;
+    border-color: #ddd #ddd;
+    padding: 5px;
+	
+}
+
+div.dataoutline{
+	background-color:#ddd;	
+	color: #000;
+	border-style: solid;
+    border-color: #ddd #ddd;
+    padding: 10px;
+	
+}
+div.bolddata {
+
+	font-weight: bold;
+   
 	
 }
 
@@ -42,57 +60,57 @@ td {
 </head>
 
 <body>
-<div id = "content">
+
 	<?php
-include 'db/db.php';
-include 'db/error.php'; 
+		include 'db/db.php';
+		include 'db/error.php'; 
 		
 		$connection = mysql_connect($host,$dbuser,$dbpass);
 		mysql_select_db($dbname, $connection);
 		$sql = "select * from food.fooddata";
 		$result = mysql_query ($sql, $connection);
 		$therows = mysql_num_rows($result);
-		echo "$therows items selected. <br />";
+		echo "$therows items selected. <br />";//debug
+		echo "<div id = content>";	
 		while ($row = mysql_fetch_row($result)){
-				if ($row[2] > 1000 || $row[2] < 2000000)$photo = "photos/apples.jpg";
-
-				echo "<img src =img/line1.png> <br /><br />";
-				echo "<div class =label > <img src = $photo >FOOD TYPE: </div>";		
-					echo "$row[2] <br />";
-				echo "<div class =label >FOOD ID	: </div>";
-					echo "$row[3] <br />";		
-				echo "<div class =label >FERTILIZER QUANTITY : </div>";
-					echo "$row[4] <br />";		
-				echo "<div class =label >FERTILIZER TYPE : </div>";	
-					echo "$row[5] <br />";	
-				echo "<div class =label >PESTICIDE QUANTITY : </div>";	
-					echo "$row[6] <br />";
-				echo "<div class =label >PESTICIDE TYPE : </div>";	
-					echo "$row[7] <br />";		
-				echo "<div class =label >PESTICIDE INTERVAL : </div>";
-					echo "$row[8] <br />" ;		
-				echo "<div class =label >WATER QUANTITY  : </div>";	
-					echo "$row[9] <br />"	;		
-				echo "<div class =label >WATER TYPE : </div>";
-					echo "$row[10] <br />";					
-				echo "<div class =label >WATER INTERVAL : </div>";
-					echo "$row[11] <br />";		
-				echo "<div class =label >DELIVERY METHOD  : </div>";
-					echo "$row[12] <br />";		
-				echo "<div class =label >DELIVERY DISTANCE  : </div>";
-					echo "$row[13] <br />";			
-				echo "<div class =label >DELIVERY WASTE % : </div> ";
-					echo "$row[14] <br />";	
-				echo "<div class =label >GMO  : </div> ";
-					echo "$row[15] <br />";
-				echo "<div class =label >COMMENTS : </div> ";
-					echo "$row[16] <br />";
-				echo "<div class =label >$row[0] $row[1]. </div>";
-				echo "<br /><img src =img/line1.png>";
-				echo " <br /><br />";
-     	
-		}
+			echo "<div class = dataoutline>";
+				echo "<div class =label >FOOD TYPE: ";		
+					echo "<span style=color:#000;font-weight:bold>$row[2] </span></div><br />";
+				echo "<div class =label >FOOD ID	: ";
+					echo "<span style=color:#000;font-weight:bold>$row[3] </span></div><br />";		
+				echo "<div class =label >FERTILIZER QUANTITY : ";
+					echo "<span style=color:#000;font-weight:bold>$row[4] </span></div><br />";	
+				echo "<div class =label >FERTILIZER TYPE : ";	
+					echo "<span style=color:#000;font-weight:bold>$row[5] </span></div><br />";
+				echo "<div class =label >PESTICIDE QUANTITY : ";	
+					echo "<span style=color:#000;font-weight:bold>$row[6] </span></div><br />";
+				echo "<div class =label >PESTICIDE TYPE : ";	
+					echo "<span style=color:#000;font-weight:bold>$row[7] </span></div><br />";		
+				echo "<div class =label >PESTICIDE INTERVAL : ";
+					echo "<span style=color:#000;font-weight:bold>$row[8] </span></div><br />";		
+				echo "<div class =label >WATER QUANTITY  : ";	
+					echo "<span style=color:#000;font-weight:bold>$row[9] </span></div><br />";	
+				echo "<div class =label >WATER TYPE : ";
+					echo "<span style=color:#000;font-weight:bold>$row[10] </span></div><br />";					
+				echo "<div class =label >WATER INTERVAL : ";
+					echo "<span style=color:#000;font-weight:bold>$row[11] </span></div><br />";	
+				echo "<div class =label >DELIVERY METHOD  : ";
+					echo "<span style=color:#000;font-weight:bold>$row[12] </span></div><br />";		
+				echo "<div class =label >DELIVERY DISTANCE  : ";
+					echo "<span style=color:#000;font-weight:bold>$row[13] </span></div><br />";	
+				echo "<div class =label >DELIVERY WASTE % : ";
+					echo "<span style=color:#000;font-weight:bold>$row[14] </span></div><br />";	
+				echo "<div class =label >GMO  :  ";
+					echo "<span style=color:#000;font-weight:bold>$row[15] </span></div><br />";
+				echo "<div class =label >COMMENTS : ";
+					echo "<span style=color:#000;font-weight:bold>$row[16] </span></div><br />";
+				echo "$row[0] $row[1]";
+			
+				echo "</div><br />";
+			
 	
+		}
+	echo "</div>";
 		mysql_close($connection);
 	
 ?>
